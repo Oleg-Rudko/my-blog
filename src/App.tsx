@@ -1,31 +1,29 @@
 import { gql, useQuery } from '@apollo/client';
 import './styles.scss';
 
+interface User {
+  id: number;
+  name: string;
+}
+
 const App = () => {
-  const { data } = useQuery(gql`
+  const { data, loading, error } = useQuery(gql`
     query {
       users {
+        id
         name
       }
     }
   `);
 
-  console.log(data);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error...</div>;
+
   return (
     <div className="wrapper">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {data.users.map((item: User) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
     </div>
   );
 };

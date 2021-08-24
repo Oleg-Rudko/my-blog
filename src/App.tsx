@@ -1,6 +1,16 @@
+import { gql, useQuery } from '@apollo/client';
 import './styles.scss';
 
 const App = () => {
+  const { data } = useQuery(gql`
+    query {
+      users {
+        name
+      }
+    }
+  `);
+
+  console.log(data);
   return (
     <div className="wrapper">
       <header className="App-header">

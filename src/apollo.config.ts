@@ -3,13 +3,12 @@ import { WebSocketLink } from '@apollo/client/link/ws';
 
 const makeApolloClient = () => {
   const link = new WebSocketLink({
-    uri: `ws://localhost:8080/v1/graphql`,
+    uri: `${process.env.REACT_APP_HASURA_HOST}`,
     options: {
       reconnect: true,
       connectionParams: {
         headers: {
-          // 'x-hasura-admin-secret': `${process.env.REACT_APP_HASURA_SECRET}`,
-          'x-hasura-admin-secret': `oleg`,
+          'x-hasura-admin-secret': `${process.env.REACT_APP_HASURA_SECRET}`,
         },
       },
     },

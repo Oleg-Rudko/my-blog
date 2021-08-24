@@ -25,7 +25,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
     "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'",
-    "isready": "npm run format && npm run lint && npm run build"
+    "isready": "npm run format && npm run lint && npm run build",
+    "hasura:m:a": "cd ./hasura && hasura migrate apply --database-name default"
   },
   "eslintConfig": {
     "extends": [
